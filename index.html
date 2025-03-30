@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doceria Delícia - Confeitaria Artesanal</title>
+    <link rel="icon" href="https://i.imgur.com/qk58H1u.png" type="image/png">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Bar/Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-birthday-cake"></i>Doceria Delícia
+            </a>
+            <div class="ms-auto">
+                <a href="#contact" class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content container">
+            <h1>Doceria Delícia</h1>
+            <p>Doces artesanais feitos com amor e ingredientes selecionados</p>
+            <a href="#bolos" class="btn btn-danger btn-lg" id="mainButton">
+                <i class="fas fa-utensils me-2"></i>Conheça nossos produtos
+            </a>
+        </div>
+    </section>
+
+    <!-- Bolos Section -->
+    <section id="bolos" class="product-section">
+        <div class="container">
+            <h2 class="text-center section-title">
+                <i class="fas fa-cake me-2"></i>Nossos Bolos
+            </h2>
+            <div class="table-container">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th><i class="fas fa-signature me-2"></i>Nome</th>
+                            <th><i class="fas fa-tag me-2"></i>Tipo</th>
+                            <th><i class="fas fa-ruler-combined me-2"></i>Tamanho</th>
+                            <th><i class="fas fa-tags me-2"></i><span>Preço</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bolos-table"></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brigadeiros Section -->
+    <section id="brigadeiros" class="product-section">
+        <div class="container">
+            <h2 class="text-center section-title">
+                <i class="fas fa-candy-cane me-2"></i>Brigadeiros
+            </h2>
+            <div class="table-container">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th><i class="fas fa-signature me-2"></i>Nome</th>
+                            <th><i class="fas fa-tag me-2"></i>Tipo</th>
+                            <th><i class="fas fa-box-open me-2"></i>Quantidade</th>
+                            <th><i class="fas fa-tags me-2"></i>Preço</th>
+                        </tr>
+                    </thead>
+                    <tbody id="brigadeiros-table"></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tortas Section -->
+    <section id="tortas" class="product-section">
+        <div class="container">
+            <h2 class="text-center section-title">
+                <i class="fas fa-pie me-2"></i>Tortas
+            </h2>
+            <div class="table-container">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th><i class="fas fa-signature me-2"></i>Nome</th>
+                            <th><i class="fas fa-tag me-2"></i>Tipo</th>
+                            <th><i class="fas fa-ruler-combined me-2"></i>Tamanho</th>
+                            <th><i class="fas fa-tags me-2"></i>Preço</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tortas-table"></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cupcakes Section -->
+    <section id="cupcakes" class="product-section">
+        <div class="container">
+            <h2 class="text-center section-title">
+                <i class="fas fa-cupcake me-2"></i>Cupcakes
+            </h2>
+            <div class="table-container">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th><i class="fas fa-signature me-2"></i>Nome</th>
+                            <th><i class="fas fa-tag me-2"></i>Tipo</th>
+                            <th><i class="fas fa-box-open me-2"></i>Quantidade</th>
+                            <th><i class="fas fa-tags me-2"></i>Preço</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cupcakes-table"></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <h3 class="mb-4">Doceria Delícia</h3>
+            <p>Os melhores doces feitos com amor e ingredientes de qualidade</p>
+            
+            <div class="social-icons">
+                <a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/?locale=pt_BR"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.whatsapp.com/?lang=pt_BR"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:bernardopatriarca25@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            
+            <p class="mb-0">
+                <i class="fas fa-map-marker-alt me-2"></i>Rua dos Doces, 123 - Centro
+            </p>
+            <p>
+                <i class="fas fa-phone me-2"></i>(11) 1234-5678
+            </p>
+            
+            <hr class="my-4 bg-light">
+            
+            <p class="mb-0">
+                &copy; 2023 Doceria Delícia - Todos os direitos reservados
+            </p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Script principal -->
+    <script src="script.js"></script>
+</body>
+</html>
