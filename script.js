@@ -178,12 +178,11 @@ function fillTable(tableId, produtos, isQuantity) {
             const row = document.createElement('tr');
             
             const sizeColumn = isQuantity 
-                ? `${product.tamanho || '--'} unidades` 
+                ? `${product.tamanho || '--'}` 
                 : getSizeText(product.tamanho);
 
             row.innerHTML = `
                 <td>${product.nome || '--'}</td>
-                <td>${getTypeText(product.tipo)}</td>
                 <td>${sizeColumn}</td>
                 <td class="price" align="right">R$ ${product.valor?.toFixed(2) || '0.00'}</td>
             `;
