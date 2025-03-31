@@ -215,6 +215,55 @@ footer {
     transform: translateY(-3px);
 }
 
+/* Estilos para a paginação */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.page-item {
+    margin: 0 5px;
+}
+
+.page-link {
+    display: block;
+    padding: 8px 15px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    color: var(--red-medium);
+    text-decoration: none;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.page-link:hover {
+    background-color: var(--red-light);
+    color: white;
+    border-color: var(--red-light);
+}
+
+.page-item.active .page-link {
+    background-color: var(--red-medium);
+    color: white;
+    border-color: var(--red-medium);
+}
+
+.page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    background-color: white;
+    border-color: #ddd;
+}
+
 /* Efeito de flutuação para a imagem de fundo */
 @keyframes floatBackground {
     0% {
@@ -307,5 +356,14 @@ footer {
     
     .section-title {
         font-size: 1.8rem;
+    }
+    
+    .pagination {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .page-item {
+        margin: 2px;
     }
 }

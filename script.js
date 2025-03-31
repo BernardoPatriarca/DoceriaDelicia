@@ -132,13 +132,20 @@ async function initializeApp() {
     }
 }
 
-// Função para preencher uma tabela específica
+// Função para preencher uma tabela específica com paginação
 function fillTable(tableId, produtos, isQuantity) {
     const tableBody = document.querySelector(`#${tableId}`);
+    const tableContainer = tableBody.closest('.table-container');
     
     if (!tableBody) {
         console.error(`Elemento #${tableId} não encontrado`);
         return;
+    }
+
+    // Remove a paginação existente, se houver
+    const existingPagination = tableContainer.querySelector('.pagination-container');
+    if (existingPagination) {
+        existingPagination.remove();
     }
 
     tableBody.innerHTML = '';
@@ -153,22 +160,156 @@ function fillTable(tableId, produtos, isQuantity) {
         return;
     }
 
-    produtos.forEach(product => {
-        const row = document.createElement('tr');
-        
-        // Determina se mostra quantidade (unidades) ou tamanho
-        const sizeColumn = isQuantity 
-            ? `${product.tamanho || '--'} unidades` 
-            : getSizeText(product.tamanho);
+    // Configuração da paginação
+    const itemsPerPage = 10;
+    let currentPage = 1;
+    const totalPages = Math.ceil(produtos.length / itemsPerPage);
 
-        row.innerHTML = `
-            <td>${product.nome || '--'}</td>
-            <td>${getTypeText(product.tipo)}</td>
-            <td>${sizeColumn}</td>
-            <td class="price" align="right">R$ ${product.valor?.toFixed(2) || '0.00'}</td>
-        `;
-        tableBody.appendChild(row);
-    });
+    // Função para mostrar os itens da página atual
+    function showPage(page) {
+        tableBody.innerHTML = '';
+        currentPage = page;
+        
+        const startIndex = (page - 1) * itemsPerPage;
+        const endIndex = Math.min(startIndex + itemsPerPage, produtos.length);
+        
+        for (let i = startIndex; i < endIndex; i++) {
+            const product = produtos[i];
+            const row = document.createElement('tr');
+            
+            const sizeColumn = isQuantity 
+                ? `${product.tamanho || '--'} unidades` 
+                : getSizeText(product.tamanho);
+
+            row.innerHTML = `
+                <td>${product.nome || '--'}</td>
+                <td>${getTypeText(product.tipo)}</td>
+                <td>${sizeColumn}</td>
+                <td class="price" align="right">R$ ${product.valor?.toFixed(2) || '0.00'}</td>
+            `;
+            tableBody.appendChild(row);
+        }
+        
+        // Atualiza os controles de paginação
+        updatePaginationControls();
+    }
+
+    // Função para criar os controles de paginação
+    function createPaginationControls() {
+        const paginationContainer = document.createElement('div');
+        paginationContainer.className = 'pagination-container';
+        
+        const paginationList = document.createElement('ul');
+        paginationList.className = 'pagination';
+        
+        // Botão Anterior
+        const prevItem = document.createElement('li');
+        prevItem.className = 'page-item';
+        prevItem.innerHTML = `<a class="page-link" href="#" aria-label="Previous">&laquo;</a>`;
+        prevItem.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (currentPage > 1) showPage(currentPage - 1);
+        });
+        paginationList.appendChild(prevItem);
+        
+        // Números das páginas
+        const maxVisiblePages = 3;
+        let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+        let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+        
+        if (endPage - startPage + 1 < maxVisiblePages) {
+            startPage = Math.max(1, endPage - maxVisiblePages + 1);
+        }
+        
+        if (startPage > 1) {
+            const firstItem = document.createElement('li');
+            firstItem.className = 'page-item';
+            firstItem.innerHTML = `<a class="page-link" href="#">1</a>`;
+            firstItem.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage(1);
+            });
+            paginationList.appendChild(firstItem);
+            
+            if (startPage > 2) {
+                const ellipsisItem = document.createElement('li');
+                ellipsisItem.className = 'page-item disabled';
+                ellipsisItem.innerHTML = `<span class="page-link">...</span>`;
+                paginationList.appendChild(ellipsisItem);
+            }
+        }
+        
+        for (let i = startPage; i <= endPage; i++) {
+            const pageItem = document.createElement('li');
+            pageItem.className = `page-item ${i === currentPage ? 'active' : ''}`;
+            pageItem.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+            pageItem.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage(i);
+            });
+            paginationList.appendChild(pageItem);
+        }
+        
+        if (endPage < totalPages) {
+            if (endPage < totalPages - 1) {
+                const ellipsisItem = document.createElement('li');
+                ellipsisItem.className = 'page-item disabled';
+                ellipsisItem.innerHTML = `<span class="page-link">...</span>`;
+                paginationList.appendChild(ellipsisItem);
+            }
+            
+            const lastItem = document.createElement('li');
+            lastItem.className = 'page-item';
+            lastItem.innerHTML = `<a class="page-link" href="#">${totalPages}</a>`;
+            lastItem.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage(totalPages);
+            });
+            paginationList.appendChild(lastItem);
+        }
+        
+        // Botão Próximo
+        const nextItem = document.createElement('li');
+        nextItem.className = 'page-item';
+        nextItem.innerHTML = `<a class="page-link" href="#" aria-label="Next">&raquo;</a>`;
+        nextItem.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (currentPage < totalPages) showPage(currentPage + 1);
+        });
+        paginationList.appendChild(nextItem);
+        
+        paginationContainer.appendChild(paginationList);
+        tableContainer.appendChild(paginationContainer);
+    }
+
+    // Função para atualizar os controles de paginação
+    function updatePaginationControls() {
+        const paginationItems = tableContainer.querySelectorAll('.page-item');
+        
+        // Atualiza o estado ativo
+        paginationItems.forEach(item => {
+            const pageLink = item.querySelector('.page-link');
+            if (pageLink) {
+                const pageNumber = parseInt(pageLink.textContent);
+                if (!isNaN(pageNumber)) {
+                    item.classList.toggle('active', pageNumber === currentPage);
+                }
+            }
+            
+            // Atualiza o estado dos botões anterior/próximo
+            if (pageLink.getAttribute('aria-label') === 'Previous') {
+                item.classList.toggle('disabled', currentPage === 1);
+            } else if (pageLink.getAttribute('aria-label') === 'Next') {
+                item.classList.toggle('disabled', currentPage === totalPages);
+            }
+        });
+    }
+
+    // Mostra a primeira página e cria os controles
+    showPage(1);
+    if (produtos.length > itemsPerPage) {
+        createPaginationControls();
+    }
 }
 
 // Mostra mensagem quando não há produtos
