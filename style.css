@@ -187,6 +187,29 @@ h1, h2, h3 {
     background-color: rgba(220, 20, 60, 0.05);
 }
 
+/* Classes para alinhamento das colunas */
+.col-name {
+    width: 50%;
+}
+
+.col-size-left {
+    width: 25%;
+    text-align: left;
+    padding-left: 30px !important;
+}
+
+.col-size-right {
+    width: 25%;
+    text-align: right;
+    padding-right: 30px !important;
+}
+
+.col-price {
+    width: 25%;
+    text-align: right !important;
+    padding-right: 16px !important;
+}
+
 .price {
     color: var(--red-medium);
     font-weight: 600;
@@ -365,5 +388,22 @@ footer {
     
     .page-item {
         margin: 2px;
+    }
+    
+    /* Ajustes para mobile */
+    .col-name {
+        width: 40%;
+    }
+    
+    .col-size-left,
+    .col-size-right {
+        width: 30%;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    
+    .col-price {
+        width: 30%;
+        padding-right: 15px !important;
     }
 }
