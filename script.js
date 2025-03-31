@@ -1,6 +1,6 @@
 // Configuração do Supabase
-const SUPABASE_URL = 'https://dmxnhandchnyikdxrqsh.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRteG5oYW5kY2hueWlrZHhycXNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMyMDA2MDgsImV4cCI6MjA1ODc3NjYwOH0.2Oo1o7jm6dyA7XumkO8POF-SxFrkz-bOnUkzFzim2S8';
+const SUPABASE_URL = 'https://xwnyvujzmbwfmhwmcppy.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh3bnl2dWp6bWJ3Zm1od21jcHB5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM0NjM5MzQsImV4cCI6MjA1OTAzOTkzNH0.DQ0M4D1ys0Mc34sNkT9bETL9iDZ_5PN1A2GKhxHAGRA';
 
 // Função para inicializar o Supabase
 async function initSupabase() {
